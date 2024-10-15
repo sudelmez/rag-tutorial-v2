@@ -1,0 +1,12 @@
+ollama pull llama2 
+ollama pull mistral
+ollama serve   
+ollama pull nomic-embed-text
+
+pip install onnxruntime
+pip install chromadb
+
+nano ~/.zshrc
+source ~/.zshrc
+
+ /Users/sudeolmez/Desktop/rag-tutorial-v2/.venv/bin/python /Users/sudeolmez/Desktop/rag-tutorial-v2/query_data.py "hello"   
