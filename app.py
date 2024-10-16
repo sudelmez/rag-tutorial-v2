@@ -4,6 +4,20 @@ from langchain_community.vectorstores import Chroma
 from langchain.prompts import ChatPromptTemplate
 from langchain_community.llms.ollama import Ollama
 from get_embedding_function import get_embedding_function
+from langsmith import Client
+import os
+from dotenv import load_dotenv
+
+# .env dosyasını yükle
+load_dotenv()
+
+# LangSmith istemcisi
+# API anahtarını al
+LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY")
+client = Client(api_key=LANGCHAIN_API_KEY)
+if LANGCHAIN_API_KEY is None:
+    raise ValueError("LANGCHAIN_API_KEY is not set.")
+
 
 CHROMA_PATH = "chroma"
 
