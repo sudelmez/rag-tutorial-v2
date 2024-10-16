@@ -12,12 +12,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # LangSmith istemcisi
-# API anahtarını al
 LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY")
-client = Client(api_key=LANGCHAIN_API_KEY)
 if LANGCHAIN_API_KEY is None:
     raise ValueError("LANGCHAIN_API_KEY is not set.")
 
+client = Client(api_key=LANGCHAIN_API_KEY)
 
 CHROMA_PATH = "chroma"
 
@@ -31,27 +30,14 @@ Answer the question based only on the following context:
 Answer the question based on the above context: {question}
 """
 
-
-
-app = FastAPI()
-
-CHROMA_PATH = "chroma"
+app = FastAPI(swagger_ui_parameters={"syntaxHighlight": False})
 
 class QueryRequest(BaseModel):
     query_text: str
 
-def get_app_description():
-	return (
-    	"Welcome to the Iris Species Prediction API!"
-    	"This API allows you to predict the species of an iris flower based on its sepal and petal measurements."
-    	"Use the '/predict/' endpoint with a POST request to make predictions."
-    	"Example usage: POST to '/predict/' with JSON data containing sepal_length, sepal_width, petal_length, and petal_width."
-	)
-
-# Define the root endpoint to return the app description
 @app.get("/")
 async def root():
-	return {"message": get_app_description()}
+    return {"message": "Welcome to the API!"}
 
 @app.post("/query")
 async def query(request: QueryRequest):
