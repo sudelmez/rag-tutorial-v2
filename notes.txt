@@ -10,3 +10,17 @@ nano ~/.zshrc
 source ~/.zshrc
 
  /Users/sudeolmez/Desktop/rag-tutorial-v2/.venv/bin/python /Users/sudeolmez/Desktop/rag-tutorial-v2/query_data.py "hello"   
+
+git remote add origin https://github.com/sudelmez/rag-tutorial-v2.git
+git remote set-url origin https://github.com/sudelmez/rag-tutorial-v2.git
+git push origin main
+
+
+to make api fastapi
+$ python3 -m venv v1
+$ source v1/bin/activate
+$ pip3 install fastapi uvicorn
+
+uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+http://localhost:8000
+curl -X POST "http://localhost:8000/query" -H "Content-Type: application/json" -d '{"query_text": "Your question here"}'
